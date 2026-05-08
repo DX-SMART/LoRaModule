@@ -1,22 +1,23 @@
-name: GitHub Traffic Archive
+name: GitHub Traffic Archive & Report
 
 on:
   schedule:
-    - cron: '0 20 * * *' # 北京時間凌晨 4 點
+    - cron: '0 20 * * *' # 每天北京時間凌晨 4 點運行
   workflow_dispatch:      # 允許手動測試
+
+permissions:
+  contents: write
 
 jobs:
   archive-traffic:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Fetch Traffic Data
         run: |
           mkdir -p traffic
-          # 注意：下面這行路徑我直接寫了您的倉庫名 DX-SMART/LoRaModule
-          
           # 獲取訪客數據
           curl -H "Authorization: token ${{ secrets.TRAFFIC_TOKEN }}" \
                https://api.github.com/repos/DX-SMART/LoRaModule/traffic/views \
@@ -27,10 +28,39 @@ jobs:
                https://api.github.com/repos/DX-SMART/LoRaModule/traffic/clones \
                > traffic/clones_$(date +%Y-%m-%d).json
 
+      - name: Update Traffic Report
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          
+          # 1. 提取 14 天總計 (來自 JSON 開頭的總和)
+          TOTAL_VIEWS=$(jq '.count' traffic/views_$DATE.json)
+          TOTAL_V_UNIQUES=$(jq '.uniques' traffic/views_$DATE.json)
+          TOTAL_CLONES=$(jq '.count' traffic/clones_$DATE.json)
+          TOTAL_C_UNIQUES=$(jq '.uniques' traffic/clones_$DATE.json)
+
+          # 2. 提取「昨天」當天的精確數據 (來自 JSON 數組中 views/clones 列表的最後一項)
+          # 注意：API 返回的最後一項通常是數據最完整的前一天
+          DAILY_V=$(jq '.views[-1].count // 0' traffic/views_$DATE.json)
+          DAILY_V_U=$(jq '.views[-1].uniques // 0' traffic/views_$DATE.json)
+          DAILY_C=$(jq '.clones[-1].count // 0' traffic/clones_$DATE.json)
+          DAILY_C_U=$(jq '.clones[-1].uniques // 0' traffic/clones_$DATE.json)
+
+          # 3. 初始化或更新報表文件
+          if [ ! -f Traffic_Report.md ]; then
+            echo "# 倉庫流量統計日誌 (自動更新)" > Traffic_Report.md
+            echo "這是 LoRaModule 倉庫的流量備份，包含每日新增與 14 天滾動總量。" >> Traffic_Report.md
+            echo "" >> Traffic_Report.md
+            echo "| 日期 | 當日新增瀏覽 | 當日獨立訪客 | 14天總量(瀏覽/人數) | 14天總量(克隆/人數) |" >> Traffic_Report.md
+            echo "| :--- | :--- | :--- | :--- | :--- |" >> Traffic_Report.md
+          fi
+
+          # 4. 將數據寫入表格 (插入在表頭下方)
+          sed -i "5i | $DATE | $DAILY_V | $DAILY_V_U | $TOTAL_VIEWS / $TOTAL_V_UNIQUES | $TOTAL_CLONES / $TOTAL_C_UNIQUES |" Traffic_Report.md
+
       - name: Save to Repository
         run: |
           git config --global user.name "Traffic-Bot"
           git config --global user.email "bot@github.com"
-          git add traffic/
-          git commit -m "Daily traffic snapshot $(date +%Y-%m-%d)" || exit 0
+          git add traffic/ Traffic_Report.md
+          git commit -m "Daily traffic update $(date +%Y-%m-%d)" || exit 0
           git push
