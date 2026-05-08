@@ -2,26 +2,35 @@ name: GitHub Traffic Archive
 
 on:
   schedule:
-    - cron: '0 20 * * *' # 北京時間凌晨 4 點運行
+    - cron: '0 20 * * *' # 北京時間凌晨 4 點
   workflow_dispatch:      # 允許手動測試
 
 jobs:
-  update-stats:
+  archive-traffic:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Traffic Statistics
-        uses: teoxoy/profile-views-stats@v1
-        with:
-          # 這裡使用您存放在 Secrets 裡的那個 Token
-          token: ${{ secrets.TRAFFIC_TOKEN }}
+      - name: Fetch Traffic Data
+        run: |
+          mkdir -p traffic
+          # 注意：下面這行路徑我直接寫了您的倉庫名 DX-SMART/LoRaModule
+          
+          # 獲取訪客數據
+          curl -H "Authorization: token ${{ secrets.TRAFFIC_TOKEN }}" \
+               https://api.github.com/repos/DX-SMART/LoRaModule/traffic/views \
+               > traffic/views_$(date +%Y-%m-%d).json
+          
+          # 獲取克隆數據
+          curl -H "Authorization: token ${{ secrets.TRAFFIC_TOKEN }}" \
+               https://api.github.com/repos/DX-SMART/LoRaModule/traffic/clones \
+               > traffic/clones_$(date +%Y-%m-%d).json
 
-      - name: Commit and Push
+      - name: Save to Repository
         run: |
           git config --global user.name "Traffic-Bot"
           git config --global user.email "bot@github.com"
-          git add .
-          git commit -m "Daily traffic update" || exit 0
+          git add traffic/
+          git commit -m "Daily traffic snapshot $(date +%Y-%m-%d)" || exit 0
           git push
