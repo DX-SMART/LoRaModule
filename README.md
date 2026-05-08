@@ -1,27 +1,26 @@
-# LoRaModule 資源下載中心
+# LoRaModule Resource Download Center
 
-本倉庫提供 DX-SMART 全系列 LoRa 模組的技术文档、測試工具及參考代碼。
+This repository provides technical documentation, testing tools, and reference source code for the full range of DX-SMART LoRa modules.
 
-## 📂 資源下載列表
+## 📂 Resource Download List
 
-請根據您的產品型號，點擊下方的「下載連結」獲取對應的資源包。
+Please find your product model below and click the corresponding "Download" link to get the resource packet.
 
-| 產品型號 | 頻率 | 下載連結 (Direct Download) |
+| Product Model | Frequency | Download Link (Direct Download) |
 | :--- | :--- | :--- |
-| **DX-LR01 & 02** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR01%2602-433Mhz/DX-LR01.02-433Mhz.Development.User.Information.rar) |
-| **DX-LR01 & 02** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR01%2602-900Mhz/DX-LR01.02-900Mhz.Development.User.Information.rar) |
-| **DX-LR03** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR03-433Mhz/DX-LR03-433Mhz.Development.User.Information.rar) |
-| **DX-LR03** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR03-900Mhz/DX-LR03-900Mhz.Development.User.Information.rar) |
-| **DX-LR20** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR20-433Mhz/DX-LR20-433Mhz.Development.User.Information.rar) |
-| **DX-LR20** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR20-900Mhz/DX-LR20-900Mhz.Development.User.Information.rar) |
-| **DX-LR21 & 22** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR21%2622-433Mhz/DX-LR21.22-433Mhz.Development.User.Information.rar) |
-| **DX-LR21 & 22** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR21%2622-900Mhz/DX-LR21.22-900Mhz.Development.User.Information.rar) |
-| **DX-LR30** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR30-433Mhz/DX-LR30-433Mhz.Development.User.Information.rar) |
-| **DX-LR30** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR30-900Mhz/DX-LR30-900Mhz.Development.User.Information.rar) |
-| **DX-LR31 & 32** | 433MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR31%2632-433Mhz/DX-LR31.32-433Mhz.Development.User.Information.rar) |
-| **DX-LR31 & 32** | 900MHz | [點此下載 (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR31%2632-900Mhz/DX-LR31.32-900Mhz.Development.User.Information.rar) |
+| **DX-LR01 & 02** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR01%2602-433Mhz/DX-LR01.02-433Mhz.Development.User.Information.rar) |
+| **DX-LR01 & 02** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR01%2602-900Mhz/DX-LR01.02-900Mhz.Development.User.Information.rar) |
+| **DX-LR03** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR03-433Mhz/DX-LR03-433Mhz.Development.User.Information.rar) |
+| **DX-LR03** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR03-900Mhz/DX-LR03-900Mhz.Development.User.Information.rar) |
+| **DX-LR20** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR20-433Mhz/DX-LR20-433Mhz.Development.User.Information.rar) |
+| **DX-LR20** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR20-900Mhz/DX-LR20-900Mhz.Development.User.Information.rar) |
+| **DX-LR21 & 22** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR21%2622-433Mhz/DX-LR21.22-433Mhz.Development.User.Information.rar) |
+| **DX-LR21 & 22** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR21%2622-900Mhz/DX-LR21.22-900Mhz.Development.User.Information.rar) |
+| **DX-LR30** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR30-433Mhz/DX-LR30-433Mhz.Development.User.Information.rar) |
+| **DX-LR30** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR30-900Mhz/DX-LR30-900Mhz.Development.User.Information.rar) |
+| **DX-LR31 & 32** | 433MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR31%2632-433Mhz/DX-LR31.32-433Mhz.Development.User.Information.rar) |
+| **DX-LR31 & 32** | 900MHz | [Download (RAR)](https://github.com/DX-SMART/LoRaModule/releases/download/DX-LR31%2632-900Mhz/DX-LR31.32-900Mhz.Development.User.Information.rar) |
 
 ---
-> **💡 提示：** 點擊連結後將直接開始下載對應的 RAR 壓縮包。
-
+> **💡 Tip:** Clicking the link will directly start downloading the corresponding RAR package.
 
