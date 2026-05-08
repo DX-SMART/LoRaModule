@@ -1,2 +1,3 @@
 # LORAMODULE
-LORAMODULE
+### 📥 點擊下載最新資料包
+* [下載 DX-CP32 資源包 (RAR)](這裡貼上剛才複製的連結)
