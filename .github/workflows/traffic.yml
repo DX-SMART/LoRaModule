@@ -1,0 +1,27 @@
+name: GitHub Traffic Archive
+
+on:
+  schedule:
+    - cron: '0 20 * * *' # 每天北京時間凌晨 4 點運行（避開數據結算高峰）
+  workflow_dispatch:      # 允許您手動點擊運行
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: GitHub Traffic Statistics
+        uses: sangonzalez/traffic-read-action@v1.2.0
+        with:
+          TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+          REPO: "DX-SMART/LoRaModule" # 確保這裡的路徑正確
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "Traffic-Bot"
+          git config --global user.email "bot@github.com"
+          git add .
+          git commit -m "Daily traffic update $(date +'%Y-%m-%d')" || exit 0
+          git push
