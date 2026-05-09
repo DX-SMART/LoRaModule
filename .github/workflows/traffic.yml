@@ -28,7 +28,7 @@ jobs:
                https://api.github.com/repos/DX-SMART/LoRaModule/traffic/clones \
                > traffic/clones_$(date +%Y-%m-%d).json
 
-      - name: 更新中文流量报告
+      - name: 更新数据
         run: |
           DATE=$(date +%Y-%m-%d)
           
@@ -44,8 +44,9 @@ jobs:
           DAILY_C=$(jq '.clones[-1].count // 0' traffic/clones_$DATE.json)
           DAILY_C_U=$(jq '.clones[-1].uniques // 0' traffic/clones_$DATE.json)
 
-          # 3. 初始化或更新简体中文报表文件
           REPORT_FILE="流量统计报告.md"
+          
+          # 3. 初始化报表文件（如果不存在）
           if [ ! -f $REPORT_FILE ]; then
             echo "# LoRaModule 仓库流量统计报告" > $REPORT_FILE
             echo "此文件由 GitHub Actions 自动生成，记录每日新增数据与 14 天滚动总量。" >> $REPORT_FILE
@@ -54,8 +55,11 @@ jobs:
             echo "| :--- | :--- | :--- | :--- | :--- |" >> $REPORT_FILE
           fi
 
-          # 4. 将新数据插入表格第五行（表头下方）
-          sed -i "5i | $DATE | $DAILY_V | $DAILY_V_U | $TOTAL_VIEWS / $TOTAL_V_UNIQUES | $TOTAL_CLONES / $TOTAL_C_UNIQUES |" $REPORT_FILE
+          # 4. 插入新行：使用临时变量构建行内容，并确保换行
+          NEW_LINE="| $DATE | $DAILY_V | $DAILY_V_U | $TOTAL_VIEWS / $TOTAL_V_UNIQUES | $TOTAL_CLONES / $TOTAL_C_UNIQUES |"
+          
+          # 在第 5 行插入新数据并强制换行
+          sed -i "5i $NEW_LINE" $REPORT_FILE
 
       - name: 保存到仓库
         run: |
