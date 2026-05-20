@@ -43,6 +43,8 @@ Open the **MCUISP** software and ensure the following 3 settings are correctly c
 2. **关键操作：** 紧接着按下开发板上的 **RST 复位键**，以触发芯片进入下载模式。
    
 <img width="4094" height="3072" alt="c57c3fe606a4b4ac1948e7693c1ae9f9" src="https://github.com/user-attachments/assets/46920da7-ad96-4fe1-98a9-d0edb49187d4" />
+<img width="840" height="874" alt="烧录成功" src="https://github.com/user-attachments/assets/ba1a258d-a0b1-46a4-a606-bf8442eb0006" />
+
 
 * **If it succeeds:** The chip info will log in the window, meaning the hardware connection and programming settings are correct. (如果您能看到芯片信息输出，说明硬件连接与烧录设置正常)。
 * **If it fails (Error prompt appears):** Please proceed to **Step 4** to perform an isolated module test. (如果出现错误提示，请继续执行 **Step 4** 隔离测试模块)。
