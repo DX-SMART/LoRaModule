@@ -1,4 +1,4 @@
-<img width="587" height="654" alt="测试图" src="https://github.com/user-attachments/assets/f370dcee-edd3-46b8-931e-fc18f005b0ba" /># DX-SMART LoRa Module Troubleshooting Guide / 模块无法使用排查指南
+# DX-SMART LoRa Module Troubleshooting Guide / 模块无法使用排查指南
 
 If your LoRa development board or module is not working or failing to program, please follow the step-by-step checklist below to diagnose and resolve the issue.
 
@@ -15,7 +15,6 @@ Before configuration, you must check which hardware version of the development b
 * **How to identify:** Refer to the silk-screen marking on the board or check the structural differences in the image below.
 * **如何识别：** 请观察板子上的丝印型号，或对比下方图片的硬件外观。
 
-`{Insert Image 3: PJ23 and PJ26 Development Board Comparison / 图3：PJ23与PJ26开发板对比说明图}`
 <img width="1338" height="590" alt="对比图" src="https://github.com/user-attachments/assets/0ce6cac6-5f85-445a-a9eb-83e50b15c8b8" />
 
 ---
@@ -30,9 +29,8 @@ Open the **MCUISP** software and ensure the following 3 settings are correctly c
 3. **RTS/DTR Control (RTS/DTR 控制):** Click the dropdown menu at the bottom left and select the mode based on your board version:
    * **For PJ23:** Select `Reset@DTR Low(<-3V), ISP@RTS High`
    * **For PJ26:** Select `Reset@DTR High(>+3V), ISP@RTS Low`
-     
+    
 <img width="850" height="946" alt="串口设置图" src="https://github.com/user-attachments/assets/0166b331-9474-4310-86a0-787dc7b100d5" />
-`{Insert Image 4: MCUISP Software Settings Guide / 图4：MCUISP烧录工具设置说明}`
 
 ---
 
@@ -45,7 +43,6 @@ Open the **MCUISP** software and ensure the following 3 settings are correctly c
 2. **关键操作：** 紧接着按下开发板上的 **RST 复位键**，以触发芯片进入下载模式。
    
 <img width="4094" height="3072" alt="c57c3fe606a4b4ac1948e7693c1ae9f9" src="https://github.com/user-attachments/assets/46920da7-ad96-4fe1-98a9-d0edb49187d4" />
-`{Insert Image 1: RST Button Location on the Board / 图1：模块上的 RST 复位键位置}`
 
 * **If it succeeds:** The chip info will log in the window, meaning the hardware connection and programming settings are correct. (如果您能看到芯片信息输出，说明硬件连接与烧录设置正常)。
 * **If it fails (Error prompt appears):** Please proceed to **Step 4** to perform an isolated module test. (如果出现错误提示，请继续执行 **Step 4** 隔离测试模块)。
@@ -65,8 +62,7 @@ If MCUISP cannot read the chip, we need to verify if the module already contains
 1. 关闭 MCUISP，打开普通的 **串口调试助手**。
 2. 配置串口参数：**波特率 `9600`**，数据位 `8`，停止位 `1`，校验位 `NONE`。
 3. 按下板子上的 **RST 复位键**，观察数据接收窗口。
-
-`{ / 图2：串口软件测试与启动日志}`<img width="587" height="654" alt="测试图" src="https://github.com/user-attachments/assets/a430c2c0-0a84-4136-a2d9-62337798667f" />
+<img width="587" height="654" alt="测试图" src="https://github.com/user-attachments/assets/a430c2c0-0a84-4136-a2d9-62337798667f" />
 
 
 ### How to Analyze the Result / 结果分析：
