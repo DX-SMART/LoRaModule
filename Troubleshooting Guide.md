@@ -126,4 +126,6 @@ If the issue still cannot be resolved, please provide the following information:
 5. High-resolution error screenshots, operation videos, or serial port output screenshots (this will help us identify the issue more quickly)
 
 ---
+Email: manager@szdx-smart.com
+WhatsApp: +86 15798463070
 
