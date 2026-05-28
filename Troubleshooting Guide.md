@@ -1,127 +1,129 @@
-# DX-SMART LoRa 模块无法使用排查指南
+# DX-SMART LoRa Module Troubleshooting Guide
 
-如果您在使用或烧录 LoRa 模块时遇到问题，请按照以下步骤逐步排查。
+If you encounter problems while using or flashing the LoRa module, please follow the steps below for troubleshooting.
 
 ---
 
-## 步骤 1：确认开发板版本
+## Step 1: Confirm the Development Board Version
 
-请先确认您的开发板型号：
+Please first confirm your development board version:
 
 * **PJ23**
 * **PJ26**
 
-不同版本对应不同 RTS/DTR 控制方式。
-<img width="1266" height="558" alt="WPS圖片(1)" src="https://github.com/user-attachments/assets/355335d5-9803-4572-9973-68eb967d96ec" />
+Different versions use different RTS/DTR control modes.
 
+<img width="1266" height="558" alt="WPS圖片(1)" src="https://github.com/user-attachments/assets/355335d5-9803-4572-9973-68eb967d96ec" />
 
 ---
 
-## 步骤 2：配置 MCUISP
+## Step 2: Configure MCUISP
 
-打开 **MCUISP** 软件，确认以下设置：
+Open the **MCUISP** software and confirm the following settings:
 
-1. 点击 `EnumPort` 自动识别串口
-2. 选择正确 COM 口
-3. 波特率设置为 `460800`
-4. 加载正确 `.hex` 固件文件
-5. RTS/DTR 设置：
+1. Click `EnumPort` to automatically detect the serial port
+2. Select the correct COM port
+3. Set baud rate to `460800`
+4. Load the correct `.hex` firmware file
+5. Configure RTS/DTR settings:
 
-### PJ23：
+### PJ23:
 
-```text id="2jx8gq"
+```text id="6g3kpr"
 Reset@DTR Low(<-3V), ISP@RTS High
 ```
 
-### PJ26：
+### PJ26:
 
-```text id="xg6s2k"
+```text id="1mvx9d"
 Reset@DTR High(>+3V), ISP@RTS Low
 ```
+
 <img width="841" height="962" alt="wechat_2026-05-28_110105_842" src="https://github.com/user-attachments/assets/e12a1f38-ef8b-4fcd-a69b-1bb2fdc51284" />
 
 ---
 
-## 步骤 3：读取芯片信息
+## Step 3: Read Chip Information
 
-1. 点击：
+1. Click:
 
-```text id="4t8lmn"
+```text id="0qk4hc"
 Read ChipInfo(R)
 ```
 
-2. 立即按下开发板 `RST` 按键。
+2. Immediately press the `RST` button on the development board.
 
-### 结果：
+### Result:
 
-* 如果成功读取芯片信息 → 设置正常
-* 如果失败 → 继续步骤 4
+* If the chip information is successfully read → Settings are correct
+* If it fails → Continue to Step 4
+
 <img width="864" height="648" alt="image" src="https://github.com/user-attachments/assets/563c3fa0-863e-4e11-adec-da816c91604d" />
-<img width="667" height="737" alt="image" src="https://github.com/user-attachments/assets/7f9cd1de-5336-4645-aa5b-fd5b58381637" />
 
+<img width="667" height="737" alt="image" src="https://github.com/user-attachments/assets/7f9cd1de-5336-4645-aa5b-fd5b58381637" />
 
 ---
 
-## 步骤 4：串口测试
+## Step 4: Serial Port Test
 
-使用串口调试助手测试模块是否正常运行。
+Use a serial port debugging tool to check whether the module is running normally.
 
-### 串口参数：
+### Serial Port Parameters:
 
-```text id="3jps7y"
-波特率：9600
-数据位：8
-停止位：1
-校验位：NONE
+```text id="k7s2lb"
+Baud Rate: 9600
+Data Bits: 8
+Stop Bits: 1
+Parity: NONE
 ```
 
-按下 `RST` 键观察输出。
+Press the `RST` button and observe the serial output.
 
-### 情况 A：有输出
+---
 
-例如：
+### Case A: Output Detected
 
-```text id="0yr2pn"
+Example:
+
+```text id="g2zp4v"
 ---> Power On
 ---> V1.2.35
 ---> DX SX1262...
 ```
 
-说明模块程序正常，请检查：
+This means the module firmware is running normally.
 
-* MCUISP 配置
-* RTS/DTR 设置
-* USB 数据线
+Please check:
+
+* MCUISP configuration
+* RTS/DTR settings
+* USB cable
 
 <img width="554" height="617" alt="image" src="https://github.com/user-attachments/assets/68bae577-4a2e-47dd-93d2-46d51a341ec1" />
 
 ---
 
-### 情况 B：无输出
+### Case B: No Output
 
-如果完全无任何返回：
+If there is absolutely no response after pressing `RST`:
 
-* 芯片可能无程序
-* RTS/DTR 设置错误
-* 板型选择错误
+* The chip may not contain firmware
+* RTS/DTR settings may be incorrect
+* Wrong board type may be selected
 
-请重新检查 PJ23 / PJ26 设置。
-
----
-
-# 📞 联系我们
-
-如果问题仍无法解决，请提供以下信息：
-
-1. LoRa 模块型号
-2. 开发板型号（PJ23 / PJ26）
-3. 问题现象描述
-4. 电脑系统（Windows/macOS）
-5. 高清报错截图，操作视频，串口输出截图（这将帮助我们更快速定位问题。）
+Please recheck the PJ23 / PJ26 configuration carefully.
 
 ---
 
-📧 Email: manager@szdx-smart.com
-💬 WhatsApp: +86 15798463070
-🏢 深圳大夏龙雀科技有限公司
-Shenzhen DX-SMART Technology Co., Ltd.
+# 📞 Contact Us
+
+If the issue still cannot be resolved, please provide the following information:
+
+1. LoRa module model
+2. Development board version (PJ23 / PJ26)
+3. Detailed problem description
+4. Computer operating system (Windows/macOS)
+5. High-resolution error screenshots, operation videos, or serial port output screenshots (this will help us identify the issue more quickly)
+
+---
+
