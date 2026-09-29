@@ -73,5 +73,81 @@ Inside the **Objects** folder, locate **`DX_TESET.hex`** and re-flash it onto th
 <img width="696" height="625" alt="image" src="https://github.com/user-attachments/assets/16856f6c-1e94-4ce7-89de-92f833f0a1fd" />
 
 
+## LORA-007- LR02/LR22/LR32/LR42 Cannot Enter AT Mode or Communicate with Each Other
+
+**Q: What should I do if the LR02/LR22/LR32/LR42 cannot enter AT mode or cannot communicate with each other?**
+
+**A:** Troubleshooting Steps
+
+#### 1. Check whether the computer can recognize the COM port
+
+First, check whether the computer can correctly recognize the module's **COM port** after the module is connected.
+
+If the COM port is not detected, check:
+
+* Whether the USB-to-Serial driver is installed correctly.
+* Whether the USB cable is working properly.
+* Whether the connection between the module and the USB-to-Serial adapter is correct.
+* Whether the corresponding COM port appears in **Device Manager**.
+
+---
+
+#### 2. Check the serial port parameters and line ending settings
+
+Check whether the serial port parameters are configured correctly, especially:
+
+* **Baud Rate**
+* **Parity**
+* Other serial communication parameters
+
+Also make sure that **Auto Append Bytes** is enabled.
+
+Enter:
+
+```text
+0D 0A
+```
+
+**Note:** `0D 0A` contains the number **0**, not the letter **O**.
+<img width="667" height="575" alt="1425ff128a3ccd2cc637db09e6523c75" src="https://github.com/user-attachments/assets/132447b7-4e4a-4e2e-9b35-9c96a5ffe33b" />
+
+
+---
+
+#### 3. Send `2B 2B 2B` in HEX mode to check whether the module can enter AT mode
+
+Switch the serial debugging software to **HEX mode**.
+
+Enter:
+
+```text
+2B 2B 2B
+```
+
+Then send the command.
+
+Check whether the module can successfully enter **AT mode**.
+<img width="667" height="575" alt="b5052c7a0e0cf123e7e6a8b284f3e4f9" src="https://github.com/user-attachments/assets/e2af5c32-b192-4796-9837-b92ddce8d4a1" />
+
+
+### If the module can enter AT mode
+
+Switch the serial debugging software back to **ASCII mode**.
+
+Then send:
+
+```text
+AT+DEFAULT
+```
+
+This will **restore the module to factory default settings**.
+
+After restoring the factory settings, perform the communication test between the modules again.
+
+### If the modules still cannot communicate
+
+Recheck the communication parameters of both modules and make sure they are configured correctly before testing again.
+
+
 
 
