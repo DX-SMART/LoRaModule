@@ -149,6 +149,81 @@ After restoring the factory settings, perform the communication test between the
 
 Recheck the communication parameters of both modules and make sure they are configured correctly before testing again.
 
+---
+
+## LORA-008 — LR20/LR30 Support for Other Development Platforms
+
+**Q: Can the LR20/LR30 be used with Arduino, Python, Raspberry Pi, Orange Pi 5 Plus, Raspberry Pi 3A+, Raspberry Pi Zero 2 W, Raspberry Pi Pico, or other development platforms? Are SDKs, libraries, example code, or PC-side tools provided?**
+
+**A:**
+
+LR20/LR30 can be used with other development platforms through the corresponding communication interface.
+
+However, the current development package is based on the **STM32F103C8T6** development board and only provides **STM32 example code**.
+
+Currently, no dedicated SDK, library, or example code is provided for Arduino, Python, Raspberry Pi, Orange Pi, or Raspberry Pi Pico.
+
+When using other development platforms, users need to **port the required communication or driver code themselves** and refer to the documentation of the corresponding platform for development.
+
+The current package does not provide dedicated development examples or PC-side tools for these platforms.
+
+---
+
+## LORA-009 — LR03 Communication Stops After Continuous Transmission
+
+**Q: Why does the LR03 stop transmitting after running for a period of time? The module can communicate normally for a short time, but eventually stops transmitting over the air?**
+
+**A:**
+
+This issue may occur when data is transmitted too quickly.
+
+LoRa is a **long-range, low-data-rate communication technology** with relatively high transmission and reception latency. If the data transmission interval is shorter than the actual communication processing time, continuous communication for an extended period may cause abnormal module behavior.
+
+The actual transmission and reception latency can vary depending on the **communication parameters and packet length**.
+
+It is recommended to first use a **serial debugging tool** to simulate the actual communication scenario and confirm the required transmission interval before performing long-duration communication tests.
+
+---
+
+## LORA-010 — LR02 Communication Automatically Stops After a Period of Time
+
+**Q: Why does the LR02 automatically stop communicating after running for a period of time?**
+
+**A:**
+
+The module has an **automatic reset mechanism** that may be triggered when an abnormal operating condition occurs.
+
+One possible cause is **buffer overflow**. LoRa communication requires a certain amount of processing time for data transmission and reception. If there is not enough time between consecutive data transmissions, the module's internal buffer may overflow and cause abnormal operation.
+
+It is recommended to **increase the interval between data transmissions** and perform a long-duration communication test again.
+
+---
+
+## LORA-011 — LR20 Data Loss When Sending Long Messages
+
+**Q: Why does the LR20 lose data when sending messages longer than 5 characters?**
+
+**A:**
+
+The example code is mainly intended for **basic communication testing and verification**. It uses simplified data processing and is not designed to provide complete protocol handling for long data, continuous data transmission, or more complex application scenarios.
+
+For actual applications, users should modify the example code according to their specific requirements and improve the **data processing and communication logic** as needed.
+
+---
+
+## LORA-012 — LR22/LR32 RF Parameter Configuration
+
+**Q: Can the LR22/LR32 independently configure parameters such as RF frequency, spreading factor, bandwidth, coding rate, and synchronization word?**
+
+**A:**
+
+For the standard firmware, the **spreading factor and coding rate cannot be configured independently**.
+
+These parameters can only be adjusted through the supported **`AT+LEVEL`** configuration.
+
+The standard firmware does not support independent configuration of the spreading factor and coding rate.
+
+
 
 
 
