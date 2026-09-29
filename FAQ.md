@@ -72,6 +72,7 @@ Inside the **Objects** folder, locate **`DX_TESET.hex`** and re-flash it onto th
 
 <img width="696" height="625" alt="image" src="https://github.com/user-attachments/assets/16856f6c-1e94-4ce7-89de-92f833f0a1fd" />
 
+---
 
 ## LORA-007- LR02/LR22/LR32/LR42 Cannot Enter AT Mode or Communicate with Each Other
 
