@@ -1,4 +1,4 @@
-### DX-LR03-900T30D RF Output Power
+## DX-LR03-900T30D RF Output Power
 
 **Q: Why does the DX-LR03-900T30D return error code 101 when executing `AT+POWE20`?**
 
