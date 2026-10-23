@@ -60,9 +60,9 @@ Please refer to the product documentation for the detailed supported frequency b
 
 ---
 
-## LORA-006 – Original Factory Firmware Location
+## LORA-006 – LR20/LR30 Original Factory Firmware Location
 
-**Q: Where can I find the original factory firmware (HEX file) to restore the device?**
+**Q: Where can I find LR20/LR30 the original factory firmware (HEX file) to restore the device?**
 
 **A:** You can find the original factory firmware (`DX_TESET.hex`) inside the provided resource package. Unzip the package and navigate to the following path:
 
